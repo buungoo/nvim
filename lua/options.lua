@@ -11,6 +11,7 @@ vim.opt.splitright = true
 vim.opt.tabstop = 4
 -- Indentation width i.e. >> <<
 vim.opt.shiftwidth = 4
+vim.o.showtabline = 4
 
 -- Copy paste from system
 vim.opt.clipboard = "unnamedplus"

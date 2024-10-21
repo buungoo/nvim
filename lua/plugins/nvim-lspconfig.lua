@@ -5,23 +5,32 @@ return {
 		servers = {
 			clangd = {},
 			rust_analyzer = {},
-			lua_ls = {},
+			lua_ls = {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			},
 			texlab = {},
 			dcmls = {},
-			golangci_lint_ls = {},
+			gopls = {},
 			docker_compose_language_service = {},
 			dockerls = {},
+			pyright = {},
 		},
 	},
 	config = function(_, opts)
 		local lspconfig = require("lspconfig")
 
-		-- Loop through the servers and announce that 
+		-- Loop through the servers and announce that
 		for server, config in pairs(opts.servers) do
 			-- Announce that we have snippet capabilities to the lsp's
 			lspconfig[server].setup(vim.tbl_extend("force", config, { capabilities = opts.capabilities }))
 		end
-	end
+	end,
 }
 
 -- Old setup
