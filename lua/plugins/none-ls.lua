@@ -2,7 +2,7 @@ return {
 	"nvimtools/none-ls.nvim",
 	keys = {
 		{
-			"<leader>ff",
+			"<leader>lf",
 			vim.lsp.buf.format,
 			desc = "format file",
 		},

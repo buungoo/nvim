@@ -59,3 +59,4 @@ vim.keymap.set("n", "<leader>d", "<cmd>NoiceDismiss<cr>", { desc = "Dismiss Noic
 	-- 	"<cmd>NoiceDismiss<cr>",
 	-- 	desc = "Dismiss Noice notification."
 	-- },
+vim.opt.wrap = false

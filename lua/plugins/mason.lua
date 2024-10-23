@@ -10,9 +10,10 @@ return {
 		mason.setup({
 			ui = {
 				icons = {
-					package_installed = "✓", -- Installed icon
-					package_pending = "➜", -- Pending installation icon
-					package_uninstalled = "✗",
+					package_installed = "📦", -- Box for installed packages
+					package_pending = "⏳", -- Hourglass for packages pending installation
+					package_uninstalled = "❌", -- Cross mark for uninstalled packages
+					package_error = "⚠️", -- Warning icon for installation errors
 				},
 			},
 		})

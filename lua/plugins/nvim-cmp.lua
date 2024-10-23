@@ -66,7 +66,14 @@ return {
 				['<C-b>'] = cmp.mapping.scroll_docs(-4),	-- Not working in 10.2
 				['<C-f>'] = cmp.mapping.scroll_docs(4),		-- Not working in 10.2
 				['<C-Space>'] = cmp.mapping.complete(),
-				['<ESC>'] = cmp.mapping(function(fallback)
+				-- ['<ESC>'] = cmp.mapping(function(fallback)
+				-- 	if cmp.visible() then
+				-- 		cmp.abort()
+				-- 	else
+				-- 		fallback() -- The fallback function sends the original key (TAB).
+				-- 	end
+				-- end, { 'i', 's' }),
+				['<cr>c'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.abort()
 					else
