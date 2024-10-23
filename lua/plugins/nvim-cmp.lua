@@ -33,7 +33,6 @@
 -- 		})
 -- 	end,
 -- }
-
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
@@ -43,13 +42,20 @@ return {
 		"hrsh7th/cmp-nvim-lua",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-cmdline",
+		-- "L3MON4D3/LuaSnip"
 	},
 	config = function()
 		local cmp = require("cmp")
+		-- local luasnip = require("luasnip")
+		-- require("luasnip.loaders.from_vscode").lazy_load()
 		cmp.setup({
+			completion = {
+				completeopt = "menu,menuone,preview,noselect"
+			},
 			snippet = {
 				expand = function(args)
 					vim.snippet.expand(args.body)
+					-- luasnip.lsp_expand(args.body)
 				end,
 			},
 			window = {
@@ -57,10 +63,16 @@ return {
 				documentation = cmp.config.window.bordered(),
 			},
 			mapping = {
-				['<C-b>'] = cmp.mapping.scroll_docs(-4),
-				['<C-f>'] = cmp.mapping.scroll_docs(4),
+				['<C-b>'] = cmp.mapping.scroll_docs(-4),	-- Not working in 10.2
+				['<C-f>'] = cmp.mapping.scroll_docs(4),		-- Not working in 10.2
 				['<C-Space>'] = cmp.mapping.complete(),
-				['<C-e>'] = cmp.mapping.abort(),
+				['<ESC>'] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.abort()
+					else
+						fallback() -- The fallback function sends the original key (TAB).
+					end
+				end, { 'i', 's' }),
 				['<CR>'] = cmp.mapping.confirm({ select = true }),
 				['<TAB>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
@@ -79,7 +91,9 @@ return {
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
+				-- { name = "luasnip" },
 				{ name = "buffer" },
+				{ name = "path" },
 			}),
 		})
 	end,

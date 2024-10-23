@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {
 		capabilities = require("cmp_nvim_lsp").default_capabilities(), -- Get snippet capabilities from nvim
 		servers = {
