@@ -90,12 +90,12 @@ return {
 
 			-- Uncomment if needed:
 			--
-			buf_set_keymap(
-				"n",
-				"<C-k>",
-				"<cmd>lua vim.lsp.buf.signature_help()<CR>",
-				{ desc = "Show signature help" }
-			)
+			-- buf_set_keymap(
+			-- 	"n",
+			-- 	"<C-k>",
+			-- 	"<cmd>lua vim.lsp.buf.signature_help()<CR>",
+			-- 	{ desc = "Show signature help" }
+			-- )
 			--
 			-- buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { desc = "Add workspace folder" })
 			--
@@ -120,19 +120,19 @@ return {
 			-- Uncomment if needed:
 			-- buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', { desc = "Format document" })
 
-			-- buf_set_keymap(
-			-- 	"n",
-			-- 	"<leader>lH",
-			-- 	"<cmd>lua vim.diagnostic.goto_prev()<CR>",
-			-- 	{ desc = "Go to previous diagnostic" }
-			-- )
-			--
-			-- buf_set_keymap(
-			-- 	"n",
-			-- 	"<leader>lh",
-			-- 	"<cmd>lua vim.diagnostic.goto_next()<CR>",
-			-- 	{ desc = "Go to next diagnostic" }
-			-- )
+			buf_set_keymap(
+				"n",
+				"<leader>lH",
+				"<cmd>lua vim.diagnostic.goto_prev()<CR>",
+				{ desc = "Go to previous diagnostic" }
+			)
+
+			buf_set_keymap(
+				"n",
+				"<leader>lh",
+				"<cmd>lua vim.diagnostic.goto_next()<CR>",
+				{ desc = "Go to next diagnostic" }
+			)
 		end
 
 		-- Loop through the servers and set up each one

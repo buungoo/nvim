@@ -73,7 +73,7 @@ return {
 				-- 		fallback() -- The fallback function sends the original key (TAB).
 				-- 	end
 				-- end, { 'i', 's' }),
-				['<cr>c'] = cmp.mapping(function(fallback)
+				['<c-c>'] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.abort()
 					else
