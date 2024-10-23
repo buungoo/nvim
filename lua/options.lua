@@ -51,3 +51,11 @@ vim.opt.smartcase = true
 
 -- If set to "yes" adds a signcolumn to the left of the line numbers when there are warning etc.
 vim.opt.signcolumn = "no"
+
+
+vim.keymap.set("n", "<leader>d", "<cmd>NoiceDismiss<cr>", { desc = "Dismiss Noice notification" })
+	-- keys = {
+	-- 	"<leader>d",
+	-- 	"<cmd>NoiceDismiss<cr>",
+	-- 	desc = "Dismiss Noice notification."
+	-- },

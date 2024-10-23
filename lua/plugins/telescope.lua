@@ -4,11 +4,22 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	keys = {
 		{
-			"<Leader>b",
-			function()
-				require("telescope.builtin").buffers()
-			end,
-			desc = "Open Telescope Buffers",
+			"<leader>ob",
+			-- function()
+			-- 	require("telescope.builtin").buffers()
+			-- end,
+			"<cmd>Telescope buffers<cr>",
+			desc = "Telescope buffers",
 		},
+		{
+			"<leader>of",
+			"<cmd>Telescope find_files<cr>",
+			desc = "Telescope find files"
+		},
+		{
+			"<leader>ol",
+			"<cmd>Telescope live_grep<cr>",
+			desc = "Telescope live grep"
+		}
 	},
 }
