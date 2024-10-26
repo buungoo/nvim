@@ -39,20 +39,56 @@ return {
 					enable = true,
 					lookahead = true,
 					keymaps = {
-						["aa"] = { query = "@parameter.outer", desc = "Select outer parameter" },
-						["ia"] = { query = "@parameter.inner", desc = "Select inner parameter" },
+						-- Outer Parameter
+						["ap"] = { query = "@parameter.outer", desc = "Select outer parameter" },
+
+						-- Inner Parameter
+						["ip"] = { query = "@parameter.inner", desc = "Select inner parameter" },
+
+						-- Outer Loop
 						["al"] = { query = "@loop.outer", desc = "Select outer loop" },
+
+						-- Inner Loop
 						["il"] = { query = "@loop.inner", desc = "Select inner loop" },
+
+						-- Outer Conditional
 						["ai"] = { query = "@conditional.outer", desc = "Select outer conditional" },
+
+						-- Inner Conditional
 						["ii"] = { query = "@conditional.inner", desc = "Select inner conditional" },
+
+						-- Outer Comment, Inner not supported
 						["at"] = { query = "@comment.outer", desc = "Select outer comment" },
-						["it"] = { query = "@comment.inner", desc = "Select inner comment" },
-						["ad"] = { query = "@function.outer", desc = "Select outer function" },
+
+						-- Outer Function definition
+						["ad"] = { query = "@function.outer", desc = "Select outer function definition" },
+
+						-- Inner Function definition
 						["id"] = { query = "@function.inner", desc = "Select inner function" },
-						["af"] = { query = "@call.outer", desc = "Select outer call" },
-						["if"] = { query = "@call.inner", desc = "Select outer call" },
+
+						-- Outer Function call
+						["af"] = { query = "@call.outer", desc = "Select outer function call" },
+
+						-- Inner Function call
+						["if"] = { query = "@call.inner", desc = "Select inner function call" },
+
+						-- Outer Class
 						["ac"] = { query = "@class.outer", desc = "Select outer class" },
+
+						-- Inner Class
 						["ic"] = { query = "@class.inner", desc = "Select inner class" },
+
+						-- Right Assignment
+						["aa"] = { query = "@assignment.rhs", desc = "Select right side of assignment" },
+
+						-- Left Assignment
+						["ia"] = { query = "@assignment.lhs", desc = "Select left side of assignment" },
+
+						-- Outer Assignment
+						["aA"] = { query = "@assignment.outer", desc = "Select outer assignment" },
+
+						-- Inner Assignment
+						["iA"] = { query = "@assignment.inner", desc = "Select inner assignment" },
 					},
 				},
 				move = {
@@ -76,8 +112,8 @@ return {
 						-- Next Conditional start
 						["öi"] = { query = "@conditional.outer", desc = "Next conditional" },
 
-						-- Next parameter
-						["öa"] = { query = "@parameter.inner", desc = "Next parameter" },
+						-- Next parameter start
+						["öp"] = { query = "@parameter.inner", desc = "Next parameter" },
 
 						-- Next Comment start
 						["öt"] = { query = "@comment.outer", desc = "Next comment outer" },
@@ -118,14 +154,14 @@ return {
 						-- Previous Loop start
 						["äl"] = { query = "@loop.outer", desc = "Previous loop start" },
 
-						-- Previous Conditional start
+						-- Previous Comment start
 						["ät"] = { query = "@comment.outer", desc = "Previous comment outer" },
 
-						-- Previous parameter
+						-- Previous Conditional start
 						["äi"] = { query = "@conditional.outer", desc = "Go to previous conditional" },
 
-						-- Previous Comment start
-						["äa"] = { query = "@parameter.inner", desc = "Previous parameter" },
+						-- Previous parameter
+						["äp"] = { query = "@parameter.inner", desc = "Previous parameter" },
 					},
 
 					-- Jump to the previous object end
