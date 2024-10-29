@@ -17,7 +17,7 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		opts = {
-			ensure_installed = { "c", "lua", "python", "vim", "vimdoc", "query", "rust", "latex", "go", "dart", "dockerfile" },
+			ensure_installed = { "c", "lua", "python", "vim", "vimdoc", "query", "rust", "latex", "go", "dart", "dockerfile", "latex" },
 			auto_install = true,
 			highlight = {
 				enable = true,

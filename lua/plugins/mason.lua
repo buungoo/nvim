@@ -26,6 +26,7 @@ return {
 				"clangd",
 				"texlab",
 				"gopls",
+				"texlab",
 			},
 			automatic_installation = true,
 		})
