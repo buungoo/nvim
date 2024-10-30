@@ -8,7 +8,11 @@ return {
 		capabilities = require("cmp_nvim_lsp").default_capabilities(), -- Get snippet capabilities from nvim
 		servers = {
 			clangd = {},
-			rust_analyzer = {},
+			rust_analyzer = {
+				cmd = {
+					"rustup", "run", "stable", "rust-analyzer"
+				}
+			},
 			lua_ls = {
 				settings = {
 					Lua = {

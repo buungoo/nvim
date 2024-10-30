@@ -46,4 +46,9 @@ return {
 			filter = { event = "msg_showmode" },
 		},
 	},
+	keys = {
+		"<leader>nd",
+		"<cmd>NoiceDismiss<cr>",
+		desc = "Dismiss Noice notification",
+	},
 }

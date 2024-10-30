@@ -50,7 +50,7 @@ return {
 		-- require("luasnip.loaders.from_vscode").lazy_load()
 		cmp.setup({
 			completion = {
-				completeopt = "menu,menuone,preview,noselect"
+				completeopt = "menu,menuone,preview,noselect",
 			},
 			snippet = {
 				expand = function(args)
@@ -63,38 +63,49 @@ return {
 				documentation = cmp.config.window.bordered(),
 			},
 			mapping = {
-				['<C-b>'] = cmp.mapping.scroll_docs(-4),	-- Not working in 10.2
-				['<C-f>'] = cmp.mapping.scroll_docs(4),		-- Not working in 10.2
-				['<C-Space>'] = cmp.mapping.complete(),
-				-- ['<ESC>'] = cmp.mapping(function(fallback)
-				-- 	if cmp.visible() then
-				-- 		cmp.abort()
-				-- 	else
-				-- 		fallback() -- The fallback function sends the original key (TAB).
-				-- 	end
-				-- end, { 'i', 's' }),
-				['<c-c>'] = cmp.mapping(function(fallback)
+				["<C-k>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.scroll_docs(-4)
+					else
+						fallback() -- Fallback to default behavior if cmp is not visible
+					end
+				end, { "i", "s" }),
+
+				["<C-j>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.scroll_docs(4)
+					else
+						fallback() -- Fallback to default behavior if cmp is not visible
+					end
+				end, { "i", "s" }),
+
+				["<C-Space>"] = cmp.mapping.complete(),
+
+				["<C-c>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.abort()
 					else
 						fallback() -- The fallback function sends the original key (TAB).
 					end
-				end, { 'i', 's' }),
-				['<CR>'] = cmp.mapping.confirm({ select = true }),
-				['<TAB>'] = cmp.mapping(function(fallback)
+				end, { "i", "s" }),
+
+				["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+				["<TAB>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
 					else
 						fallback() -- The fallback function sends the original key (TAB).
 					end
-				end, { 'i', 's' }), -- 'i' for insert mode, 's' for select mode.
-				['<S-TAB>'] = cmp.mapping(function(fallback)
+				end, { "i", "s" }), -- 'i' for insert mode, 's' for select mode.
+
+				["<S-TAB>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
 					else
 						fallback() -- The fallback function sends the original key (S-TAB).
 					end
-				end, { 'i', 's' }),
+				end, { "i", "s" }),
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },

@@ -27,6 +27,7 @@ return {
 	},
 	opts = {
 		defaults = {
+			-- Key mappings inside the telescope gui
 			mappings = {
 				i = {
 					-- Return deferred functions to still allow for lazy loading
