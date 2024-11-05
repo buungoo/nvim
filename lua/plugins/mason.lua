@@ -2,11 +2,13 @@ return {
 	"williamboman/mason.nvim",
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
+		"jay-babu/mason-null-ls.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
 	},
 	config = function()
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
+		local mason_null_ls = require("mason-null-ls")
 
 		mason.setup({
 			ui = {
@@ -27,7 +29,15 @@ return {
 				"clangd",
 				"texlab",
 				"gopls",
-				"texlab",
+				"typescript-language-server",
+			},
+			automatic_installation = true,
+		})
+
+		mason_null_ls.setup({
+			ensure_installed = {
+				"black",
+				"ruff",
 			},
 			automatic_installation = true,
 		})

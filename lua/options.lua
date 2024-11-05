@@ -37,10 +37,10 @@ vim.g.maplocalleader = " "
 
 -- Highlight on search but clear on pressing esc in normalmode
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Exit terminal mode on Esc
-vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode'})
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 -- Highlight cursor line number
 vim.opt.cursorline = true
@@ -52,11 +52,13 @@ vim.opt.smartcase = true
 -- If set to "yes" adds a signcolumn to the left of the line numbers when there are warning etc.
 vim.opt.signcolumn = "no"
 
-
 vim.keymap.set("n", "<leader>d", "<cmd>NoiceDismiss<cr>", { desc = "Dismiss Noice notification" })
-	-- keys = {
-	-- 	"<leader>d",
-	-- 	"<cmd>NoiceDismiss<cr>",
-	-- 	desc = "Dismiss Noice notification."
-	-- },
+-- keys = {
+-- 	"<leader>d",
+-- 	"<cmd>NoiceDismiss<cr>",
+-- 	desc = "Dismiss Noice notification."
+-- },
 vim.opt.wrap = false
+
+-- Set the localleader for things such as texlab
+vim.g.maplocalleader = ","
