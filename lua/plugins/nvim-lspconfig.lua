@@ -1,3 +1,9 @@
+-- Toggle inlay hints function
+function toggle_inlay_hints()
+	local is_enabled = vim.lsp.inlay_hint.is_enabled()
+	vim.lsp.inlay_hint.enable(not is_enabled, { bufnr = bufnr })
+end
+
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
@@ -10,8 +16,12 @@ return {
 			clangd = {},
 			rust_analyzer = {
 				cmd = {
-					"rustup", "run", "stable", "rust-analyzer"
-				}
+					"rustup",
+					"run",
+					"stable",
+					"rust-analyzer",
+				},
+				hints = { enable = false },
 			},
 			lua_ls = {
 				settings = {
@@ -29,13 +39,11 @@ return {
 				},
 			},
 			texlab = {},
-			-- dcmls = {}, -- Paid lsp :/
 			gopls = {},
 			docker_compose_language_service = {},
 			dockerls = {},
 			pyright = {},
 			dartls = {
-				-- on_attach = on_attach,
 				settings = {
 					dart = {
 						analysisExcludedFolders = {
@@ -51,48 +59,48 @@ return {
 	},
 	config = function(_, opts)
 		local lspconfig = require("lspconfig")
+
 		local on_attach = function(client, bufnr)
+			-- Enable inlay hints using `vim.lsp.inlay_hint.enable`
+			if vim.lsp.inlay_hint and vim.lsp.inlay_hint.enable and client.server_capabilities.inlayHintProvider then
+				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+			end
+
 			-- Key mappings for LSP features
 			local function buf_set_keymap(...)
 				vim.api.nvim_buf_set_keymap(bufnr, ...)
 			end
-			-- local opts = { noremap = true, silent = true }
 
-			buf_set_keymap(
-				"n",
-				"<leader>ld",
-				"<cmd>Telescope lsp_definitions<CR>",
-				{ desc = "Go to definition" }
-			)
-
-			buf_set_keymap(
-				"n",
-				"<leader>lr",
-				"<cmd>Telescope lsp_references<CR>",
-				{ desc = "List references" }
-			)
-
-			buf_set_keymap(
-				"n",
-				"K",
-				"<cmd>lua vim.lsp.buf.hover()<CR>",
-				{ desc = "Show hover documentation" }
-			)
-
+			buf_set_keymap("n", "<leader>ls", "<cmd>lua toggle_inlay_hints()<CR>", { desc = "Toggle Inlay Hints" })
+			buf_set_keymap("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
+			buf_set_keymap("n", "<leader>lr", "<cmd>Telescope lsp_references<CR>", { desc = "List references" })
+			buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Show hover documentation" })
 			buf_set_keymap(
 				"n",
 				"<leader>li",
 				"<cmd>Telescope lsp_implementations<CR>",
 				{ desc = "Go to implementation" }
 			)
-
 			buf_set_keymap(
 				"n",
 				"<leader>lt",
 				"<cmd>Telescope lsp_type_definitions<cr>",
 				{ desc = "Go to type definition" }
 			)
-
+			buf_set_keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "LSP Smart rename" })
+			buf_set_keymap("n", "<leader>lc", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code actions" })
+			buf_set_keymap(
+				"n",
+				"<leader>lH",
+				"<cmd>lua vim.diagnostic.goto_prev()<CR>",
+				{ desc = "Go to previous diagnostic" }
+			)
+			buf_set_keymap(
+				"n",
+				"<leader>lh",
+				"<cmd>lua vim.diagnostic.goto_next()<CR>",
+				{ desc = "Go to next diagnostic" }
+			)
 			-- Uncomment if needed:
 			--
 			-- buf_set_keymap(
@@ -107,42 +115,10 @@ return {
 			-- buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { desc = "Remove workspace folder" })
 			--
 			-- buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', { desc = "List workspace folders" })
-
-			buf_set_keymap(
-				"n",
-				"<leader>lr",
-				"<cmd>lua vim.lsp.buf.rename()<CR>",
-				{ desc = "LSP Smart rename" }
-			)
-
-			buf_set_keymap(
-				"n",
-				"<leader>lc",
-				"<cmd>lua vim.lsp.buf.code_action()<CR>",
-				{ desc = "Code actions" }
-			)
-
-			-- Uncomment if needed:
-			-- buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', { desc = "Format document" })
-
-			buf_set_keymap(
-				"n",
-				"<leader>lH",
-				"<cmd>lua vim.diagnostic.goto_prev()<CR>",
-				{ desc = "Go to previous diagnostic" }
-			)
-
-			buf_set_keymap(
-				"n",
-				"<leader>lh",
-				"<cmd>lua vim.diagnostic.goto_next()<CR>",
-				{ desc = "Go to next diagnostic" }
-			)
 		end
 
 		-- Loop through the servers and set up each one
 		for server, config in pairs(opts.servers) do
-			-- Merge the `on_attach` function and capabilities into the server config
 			lspconfig[server].setup(
 				vim.tbl_extend("force", config, { capabilities = opts.capabilities, on_attach = on_attach })
 			)

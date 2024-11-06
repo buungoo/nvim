@@ -62,3 +62,45 @@ vim.opt.wrap = false
 
 -- Set the localleader for things such as texlab
 vim.g.maplocalleader = ","
+
+-- -- Automatically show diagnostic float when cursor is on an error or warning
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--     group = vim.api.nvim_create_augroup("ShowDiagnosticsOnCursor", { clear = true }),
+--     callback = function()
+--         -- Open a floating window with diagnostics if the cursor is on a line with diagnostics
+--         vim.diagnostic.open_float(nil, { focus = false })
+--     end,
+-- })
+
+vim.o.updatetime = 100
+
+vim.api.nvim_create_autocmd("CursorHold", {
+    group = vim.api.nvim_create_augroup("ShowDiagnosticsOnCursor", { clear = true }),
+    callback = function()
+        -- Get diagnostics for the current line only
+        local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line('.') - 1 })
+
+        -- Filter diagnostics to include only errors and warnings
+        local filtered_diagnostics = {}
+        for _, diagnostic in ipairs(diagnostics) do
+            if diagnostic.severity == vim.diagnostic.severity.ERROR or
+               diagnostic.severity == vim.diagnostic.severity.WARN then
+                table.insert(filtered_diagnostics, diagnostic)
+            end
+        end
+
+        -- Only show diagnostics if there are any filtered ones for the current line
+        if #filtered_diagnostics > 0 then
+            vim.diagnostic.open_float(nil, { focus = false })
+        end
+    end,
+})
+
+-- Set default configuration for diagnostics
+vim.diagnostic.config({
+    float = {
+        border = 'rounded',  -- This will apply rounded borders to all diagnostic floats
+        focusable = false,   -- Optional: Makes the float not steal focus
+		max_width = 80,
+    },
+})
