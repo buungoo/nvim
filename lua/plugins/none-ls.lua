@@ -17,6 +17,8 @@
 -- 	end,
 -- }
 
+				-- none_ls.builtins.formatting.black,
+				-- none_ls.builtins.diagnostics.ruff,
 return {
 	"nvimtools/none-ls.nvim",
 	dependencies = { "nvim-lua/plenary.nvim" },
@@ -25,8 +27,6 @@ return {
 		return {
 			sources = {
 				none_ls.builtins.formatting.stylua,
-				none_ls.builtins.formatting.black,
-				none_ls.builtins.diagnostics.ruff,
 			},
 		}
 	end,

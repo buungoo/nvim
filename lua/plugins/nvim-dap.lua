@@ -40,13 +40,9 @@
 
 return {
 	"mfussenegger/nvim-dap",
-<<<<<<< HEAD
 	enabled = false,
-=======
 	recommended = true,
 	desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
-
->>>>>>> 6ef78b4 (laptop save)
 	dependencies = {
 		-- virtual text for the debugger
 		-- "theHamsta/nvim-dap-virtual-text",

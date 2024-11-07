@@ -38,21 +38,15 @@ return {
 	"williamboman/mason.nvim",
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
-<<<<<<< HEAD
 		"jay-babu/mason-null-ls.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
-=======
-		"jay-babu/mason-nvim-dap.nvim", -- add mason-nvim-dap here
->>>>>>> 6ef78b4 (laptop save)
 	},
 	config = function()
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
-<<<<<<< HEAD
 		local mason_null_ls = require("mason-null-ls")
-=======
 		local mason_nvim_dap = require("mason-nvim-dap")
->>>>>>> 6ef78b4 (laptop save)
+		print(mason_nvim_dap)
 
 		mason.setup({
 			ui = {
@@ -72,7 +66,6 @@ return {
 				"clangd",
 				"texlab",
 				"gopls",
-<<<<<<< HEAD
 				"typescript-language-server",
 			},
 			automatic_installation = true,
@@ -80,18 +73,16 @@ return {
 
 		mason_null_ls.setup({
 			ensure_installed = {
-				"black",
-				"ruff",
-=======
->>>>>>> 6ef78b4 (laptop save)
+				-- "black",
+				-- "ruff",
 			},
-			automatic_installation = true,
+			-- automatic_installation = true,
 		})
 
 		-- Set up mason-nvim-dap to ensure codelldb is available for nvim-dap
-		mason_nvim_dap.setup({
-			ensure_installed = { "codelldb" }, -- Add codelldb for debugging support
-			automatic_installation = true,
-		})
+		-- mason_nvim_dap.setup({
+		-- 	ensure_installed = { "codelldb" }, -- Add codelldb for debugging support
+		-- 	automatic_installation = true,
+		-- })
 	end,
 }
