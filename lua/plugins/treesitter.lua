@@ -1,14 +1,3 @@
-function myfunc()
-	for i = 1, 10, 1 do
-		print(i)
-	end
-
-	if something > 10 then
-		print(something)
-		print(1)
-	end
-end
-
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -17,7 +6,20 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		opts = {
-			ensure_installed = { "c", "lua", "python", "vim", "vimdoc", "query", "rust", "latex", "go", "dart", "dockerfile", "latex" },
+			ensure_installed = {
+				"c",
+				"lua",
+				"python",
+				"vim",
+				"vimdoc",
+				"query",
+				"rust",
+				"latex",
+				"go",
+				"dart",
+				"dockerfile",
+				"latex"
+			},
 			auto_install = true,
 			highlight = {
 				enable = true,

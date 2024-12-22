@@ -18,10 +18,9 @@ vim.opt.rtp:prepend(lazypath)
 -- Find lazy i.e. stdpath("data")/lazy/lazy.nvim/lua/lazy
 require("lazy").setup({
 	spec = {
-		{
-			import = "plugins",
-			-- import = "plugins.theme"
-		},
+		{ import = "plugins" },
+		{ import = "plugins.theme" },
+		{ import = "plugins.util" },
 	},
 	checker = {
 		enabled = true,
