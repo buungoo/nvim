@@ -66,7 +66,6 @@ return {
 				"clangd",
 				"texlab",
 				"gopls",
-				"typescript-language-server",
 			},
 			automatic_installation = true,
 		})

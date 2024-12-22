@@ -8,9 +8,6 @@ return {
 	keys = {
 		{
 			"<leader>ob",
-			-- function()
-			-- 	require("telescope.builtin").buffers()
-			-- end,
 			"<cmd>Telescope buffers<cr>",
 			desc = "Telescope buffers",
 		},

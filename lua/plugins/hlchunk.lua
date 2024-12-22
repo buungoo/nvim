@@ -7,20 +7,13 @@ return {
 			enable = true,
 			use_treesitter = true,
 			chars = {
-				horizontal_line = "━",
-				vertical_line = "┃",
-				left_top = "┏",
-				left_bottom = "┗",
-				right_arrow = "━",
+				right_arrow = "─",
 			},
 			delay = 0,
 			duration = 100,
 			style = {
-				{ fg = "#ff9e3b" }, -- Same color as CursorLineNr
-				{ bg = "#ff9e3b" }, -- Set a background color to match CursorLine
-				-- These don't seem to work, or atleast I couldn't get it to work
-				-- { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("CursorLineNr")), "fg", "gui") },
-				-- { bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("CursorLineNr")), "fg", "gui") },
+				"#ff9e3b", -- Same color as CursorLineNr in Kanagawa
+				"#f35336", -- Fallback color for erroneous chunk
 			},
 		},
 		indent = {
