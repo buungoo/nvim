@@ -44,11 +44,30 @@ vim.opt.signcolumn = "no"
 -- Do not wrap to newline by default
 vim.opt.wrap = false
 
+-- Centralized float configuration for LSP-related popups
+local float_config = {
+    border = "rounded",  -- Use rounded borders
+    -- max_width = 80,      -- Optional: Limit width of floats
+    focusable = false,   -- Optional: Prevent focus stealing
+}
+
 -- Set default configuration for diagnostics
 vim.diagnostic.config({
-    float = {
-        border = 'rounded',  -- This will apply rounded borders to all diagnostic floats
-        focusable = false,   -- Optional: Makes the float not steal focus
-		max_width = 80,
-    },
+	-- float = {
+	-- 	border = "rounded", -- This will apply rounded borders to all diagnostic floats
+	-- 	focusable = false,  -- Optional: Makes the float not steal focus
+	-- 	max_width = 80,
+	-- },
+	float = float_config
 })
+
+-- Customize the hover handler to use the same float style
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+-- 	border = "rounded", -- Apply rounded borders to hover floats
+-- 	max_width = 80,     -- Optional: Limit the width of the hover float
+-- 	focusable = true,   -- Optional: Prevent the hover float from stealing focus
+-- })
+
+-- Apply float settings to hover and signature help handlers
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float_config)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float_config)

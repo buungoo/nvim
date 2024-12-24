@@ -1,6 +1,10 @@
+local example = "hi"
+print(example)
+if example then
+	print("EOE")
+end
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.8",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -21,9 +25,23 @@ return {
 			"<cmd>Telescope live_grep<cr>",
 			desc = "Telescope live grep",
 		},
+		{
+			"<leader>oh",
+			"<cmd>Telescope help_tags<cr>",
+			desc = "Telescope help tags",
+		},
+		{
+			"<leader>op",
+			function ()
+				require("telescope.builtin").find_files {
+					cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+				}
+			end
+		}
 	},
 	opts = {
 		defaults = {
+			path_display = "filename_first",
 			-- Key mappings inside the telescope gui
 			mappings = {
 				i = {
@@ -41,6 +59,11 @@ return {
 				},
 			},
 		},
+		pickers = {
+			find_files = {
+				-- theme = "dropdown"
+			}
+		}
 	},
 	config = function(_, opts)
 		require("telescope").setup(opts)
