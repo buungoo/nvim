@@ -7,7 +7,8 @@ end
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
+		-- "hrsh7th/cmp-nvim-lsp",
+		"saghen/blink.cmp",
 		{
 			"folke/lazydev.nvim",
 			ft = "lua", -- only load on lua files
@@ -20,9 +21,9 @@ return {
 			},
 		},
 	},
-	-- event = { "BufReadPre", "BufNewFile" },
+	event = { "BufReadPre", "BufNewFile" },
 	opts = {
-		capabilities = require("cmp_nvim_lsp").default_capabilities(), -- Get snippet capabilities from nvim
+		-- capabilities = require("cmp_nvim_lsp").default_capabilities(), -- Get snippet capabilities from nvim
 		servers = {
 			clangd = {},
 			rust_analyzer = {
@@ -56,6 +57,12 @@ return {
 	},
 	config = function(_, opts)
 		local lspconfig = require("lspconfig")
+
+		-- Loop through the servers and set up each one
+		for server, config in pairs(opts.servers) do
+			config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+			lspconfig[server].setup(config)
+		end
 
 		local on_attach = function(client, bufnr)
 			-- Enable inlay hints using `vim.lsp.inlay_hint.enable`
@@ -112,13 +119,6 @@ return {
 			-- buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { desc = "Remove workspace folder" })
 			--
 			-- buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', { desc = "List workspace folders" })
-		end
-
-		-- Loop through the servers and set up each one
-		for server, config in pairs(opts.servers) do
-			lspconfig[server].setup(
-				vim.tbl_extend("force", config, { capabilities = opts.capabilities, on_attach = on_attach })
-			)
 		end
 	end,
 }

@@ -9,3 +9,6 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- vim.keymap.set("n", "<leader>d", "<cmd>NoiceDismiss<cr>", { desc = "Dismiss Noice notification" })
+
+-- Map 'jj' to exit insert mode
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
