@@ -31,6 +31,7 @@ return {
 			},
 
 			menu = {
+				-- Remove the highlighting later to see if it has been improved
 				winhighlight = "FloatBorder:BlinkCmpSignatureHelpBorder",
 				scrollbar = false,
 				border = "rounded",
@@ -41,6 +42,7 @@ return {
 				auto_show = true,
 				auto_show_delay_ms = 50,
 				window = {
+					-- Remove the highlighting later to see if it has been improved
 					winhighlight = "FloatBorder:BlinkCmpSignatureHelpBorder",
 					border = "rounded",
 				},
@@ -53,6 +55,7 @@ return {
 		signature = {
 			enabled = true,
 			window = {
+				-- Remove the highlighting later to see if it has been improved
 				winhighlight = "FloatBorder:BlinkCmpSignatureHelpBorder",
 				border = "rounded",
 			},

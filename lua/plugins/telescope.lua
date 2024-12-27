@@ -1,8 +1,3 @@
-local example = "hi"
-print(example)
-if example then
-	print("EOE")
-end
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = {

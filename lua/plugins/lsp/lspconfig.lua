@@ -58,67 +58,84 @@ return {
 	config = function(_, opts)
 		local lspconfig = require("lspconfig")
 
-		-- Loop through the servers and set up each one
-		for server, config in pairs(opts.servers) do
-			config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
-			lspconfig[server].setup(config)
-		end
-
+		-- local on_attach = function(client, bufnr)
+		-- 	-- Enable inlay hints using `vim.lsp.inlay_hint.enable`
+		-- 	if vim.lsp.inlay_hint and vim.lsp.inlay_hint.enable and client.server_capabilities.inlayHintProvider then
+		-- 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+		-- 	end
+		-- end
 		local on_attach = function(client, bufnr)
-			-- Enable inlay hints using `vim.lsp.inlay_hint.enable`
+			-- Check if inlay hints are supported and enable them
 			if vim.lsp.inlay_hint and vim.lsp.inlay_hint.enable and client.server_capabilities.inlayHintProvider then
 				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			end
 
-			-- Key mappings for LSP features
-			local function buf_set_keymap(...)
-				vim.api.nvim_buf_set_keymap(bufnr, ...)
-			end
-
-			buf_set_keymap("n", "<leader>ls", "<cmd>lua toggle_inlay_hints()<CR>", { desc = "Toggle Inlay Hints" })
-			buf_set_keymap("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
-			buf_set_keymap("n", "<leader>lr", "<cmd>Telescope lsp_references<CR>", { desc = "List references" })
-			buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Show hover documentation" })
-			buf_set_keymap(
-				"n",
-				"<leader>li",
-				"<cmd>Telescope lsp_implementations<CR>",
-				{ desc = "Go to implementation" }
-			)
-			buf_set_keymap(
-				"n",
-				"<leader>lt",
-				"<cmd>Telescope lsp_type_definitions<cr>",
-				{ desc = "Go to type definition" }
-			)
-			buf_set_keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "LSP Smart rename" })
-			buf_set_keymap("n", "<leader>lc", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code actions" })
-			buf_set_keymap(
-				"n",
-				"<leader>lH",
-				"<cmd>lua vim.diagnostic.goto_prev()<CR>",
-				{ desc = "Go to previous diagnostic" }
-			)
-			buf_set_keymap(
-				"n",
-				"<leader>lh",
-				"<cmd>lua vim.diagnostic.goto_next()<CR>",
-				{ desc = "Go to next diagnostic" }
-			)
-			-- Uncomment if needed:
-			--
-			-- buf_set_keymap(
-			-- 	"n",
-			-- 	"<C-k>",
-			-- 	"<cmd>lua vim.lsp.buf.signature_help()<CR>",
-			-- 	{ desc = "Show signature help" }
-			-- )
-			--
-			-- buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { desc = "Add workspace folder" })
-			--
-			-- buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { desc = "Remove workspace folder" })
-			--
-			-- buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', { desc = "List workspace folders" })
+			-- Additional on_attach logic (e.g., key mappings)
+			print("LSP attached to buffer", bufnr)
 		end
+
+		-- Loop through the servers and set up each one
+		for server, config in pairs(opts.servers) do
+			config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+			config.on_attach = on_attach
+			lspconfig[server].setup(config)
+		end
+
+		-- local on_attach = function(client, bufnr)
+		-- 	-- Enable inlay hints using `vim.lsp.inlay_hint.enable`
+		-- 	if vim.lsp.inlay_hint and vim.lsp.inlay_hint.enable and client.server_capabilities.inlayHintProvider then
+		-- 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+		-- 	end
+		--
+		-- 	-- Key mappings for LSP features
+		-- 	local function buf_set_keymap(...)
+		-- 		vim.api.nvim_buf_set_keymap(bufnr, ...)
+		-- 	end
+		--
+		-- 	buf_set_keymap("n", "<leader>ls", "<cmd>lua toggle_inlay_hints()<CR>", { desc = "Toggle Inlay Hints" })
+		-- 	buf_set_keymap("n", "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
+		-- 	buf_set_keymap("n", "<leader>lr", "<cmd>Telescope lsp_references<CR>", { desc = "List references" })
+		-- 	buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Show hover documentation" })
+		-- 	buf_set_keymap(
+		-- 		"n",
+		-- 		"<leader>li",
+		-- 		"<cmd>Telescope lsp_implementations<CR>",
+		-- 		{ desc = "Go to implementation" }
+		-- 	)
+		-- 	buf_set_keymap(
+		-- 		"n",
+		-- 		"<leader>lt",
+		-- 		"<cmd>Telescope lsp_type_definitions<cr>",
+		-- 		{ desc = "Go to type definition" }
+		-- 	)
+		-- 	buf_set_keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "LSP Smart rename" })
+		-- 	buf_set_keymap("n", "<leader>lc", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code actions" })
+		-- 	buf_set_keymap(
+		-- 		"n",
+		-- 		"<leader>lH",
+		-- 		"<cmd>lua vim.diagnostic.goto_prev()<CR>",
+		-- 		{ desc = "Go to previous diagnostic" }
+		-- 	)
+		-- 	buf_set_keymap(
+		-- 		"n",
+		-- 		"<leader>lh",
+		-- 		"<cmd>lua vim.diagnostic.goto_next()<CR>",
+		-- 		{ desc = "Go to next diagnostic" }
+		-- 	)
+		-- 	-- Uncomment if needed:
+		-- 	--
+		-- 	-- buf_set_keymap(
+		-- 	-- 	"n",
+		-- 	-- 	"<C-k>",
+		-- 	-- 	"<cmd>lua vim.lsp.buf.signature_help()<CR>",
+		-- 	-- 	{ desc = "Show signature help" }
+		-- 	-- )
+		-- 	--
+		-- 	-- buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { desc = "Add workspace folder" })
+		-- 	--
+		-- 	-- buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { desc = "Remove workspace folder" })
+		-- 	--
+		-- 	-- buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', { desc = "List workspace folders" })
+		-- end
 	end,
 }
