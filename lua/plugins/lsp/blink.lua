@@ -7,14 +7,14 @@ return {
 			preset = "enter",
 			["<Tab>"] = { "select_next", "fallback" },
 			["<S-Tab>"] = { "select_prev", "fallback" },
-			['<C-c>'] = { 'cancel', 'fallback' },
+			["<C-c>"] = { "cancel", "fallback" },
 			-- ["<Tab>"] = { "snippet_forward", "fallback" },
 		},
 
 		appearance = {
 			-- Using this broke the ghost text and it will be removed later anyway
 			use_nvim_cmp_as_default = false,
-			nerd_font_variant = "mono"
+			nerd_font_variant = "mono",
 		},
 
 		completion = {
@@ -36,6 +36,9 @@ return {
 				scrollbar = false,
 				border = "rounded",
 				auto_show = true,
+				draw = {
+					treesitter = { "lsp" },
+				},
 			},
 
 			documentation = {
@@ -70,6 +73,6 @@ return {
 					score_offset = 100,
 				},
 			},
-		}
+		},
 	},
 }
