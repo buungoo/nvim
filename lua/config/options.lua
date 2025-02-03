@@ -7,11 +7,11 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- Normal sized tabs
--- Set tabs to 4 on saving and opening files
-vim.opt.tabstop = 4
+-- Set tabs to 3 on saving and opening files
+vim.opt.tabstop = 3
 -- Indentation width i.e. >> <<
-vim.opt.shiftwidth = 4
-vim.opt.showtabline = 4
+vim.opt.shiftwidth = 3
+vim.opt.showtabline = 3
 
 -- Copy paste from system
 vim.opt.clipboard = "unnamedplus"

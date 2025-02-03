@@ -3,13 +3,8 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
-		bigfile = {
-			enabled = true
-		},
-		dashboard = {
-			-- Kurama622/profile.nvim
-			enabled = true
-		},
+		bigfile = { enabled = true },
+		dashboard = { enabled = true },
 		debug = { enabled = true },
 		git = { enabled = true },
 		gitbrowse = { enabled = true },
@@ -20,7 +15,6 @@ return {
 		quickfile = { enabled = true },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
-		words = { enabled = false },
 	},
 	keys = {
 		{ "<leader>g", function () Snacks.gitbrowse() end, desc = "Gitbrowse" },
