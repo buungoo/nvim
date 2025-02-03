@@ -39,7 +39,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- If set to "yes" adds a signcolumn to the left of the line numbers when there are warning etc.
--- vim.opt.signcolumn = "no"
+vim.opt.signcolumn = "number"
 
 -- Do not wrap to newline by default
 vim.opt.wrap = false
@@ -81,6 +81,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 vim.diagnostic.config({
 	underline = true,
+	signs = false,
 })
 -- Add this to your LSP config or colorscheme setup
 -- vim.api.nvim_create_autocmd('ColorScheme', {
