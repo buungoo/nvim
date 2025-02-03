@@ -1,5 +1,5 @@
 return {
-    'sethen/line-number-change-mode.nvim',
+    "sethen/line-number-change-mode.nvim",
     enabled = true,
     config = function()
         local kanagawa_colors = require('kanagawa.colors').setup({ theme = 'wave' })
