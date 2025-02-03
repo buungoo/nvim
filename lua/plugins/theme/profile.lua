@@ -27,7 +27,7 @@
 
 return {
 	"Kurama622/profile.nvim",
-	enabled = true,
+	enabled = false,
 	dependencies = { "3rd/image.nvim" },
 	cmd = { "Profile" },
 	config = function()

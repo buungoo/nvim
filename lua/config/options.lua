@@ -39,7 +39,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- If set to "yes" adds a signcolumn to the left of the line numbers when there are warning etc.
-vim.opt.signcolumn = "no"
+-- vim.opt.signcolumn = "no"
 
 -- Do not wrap to newline by default
 vim.opt.wrap = false
@@ -52,14 +52,21 @@ local float_config = {
 }
 
 -- Set default configuration for diagnostics
-vim.diagnostic.config({
-	-- float = {
-	-- 	border = "rounded", -- This will apply rounded borders to all diagnostic floats
-	-- 	focusable = false,  -- Optional: Makes the float not steal focus
-	-- 	max_width = 80,
-	-- },
-	float = float_config
-})
+-- vim.diagnostic.config({
+-- 	-- float = {
+-- 	-- 	border = "rounded", -- This will apply rounded borders to all diagnostic floats
+-- 	-- 	focusable = false,  -- Optional: Makes the float not steal focus
+-- 	-- 	max_width = 80,
+-- 	-- },
+-- 	float = float_config,
+-- 	underline = {
+-- 		severity = { min = vim.diagnostic.severity.WARN },
+-- 		style = "underline",
+-- 	},
+-- 	-- virtual_text = true,
+-- 	-- signs = true,
+-- 	-- update_in_insert = false,
+-- })
 
 -- Customize the hover handler to use the same float style
 -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -71,3 +78,39 @@ vim.diagnostic.config({
 -- Apply float settings to hover and signature help handlers
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float_config)
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float_config)
+
+vim.diagnostic.config({
+	underline = true,
+})
+-- Add this to your LSP config or colorscheme setup
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   pattern = '*',
+--   callback = function()
+--     local colors = require('kanagawa.colors').setup({ theme = 'wave' })
+--
+--     -- Set straight underlines with theme-appropriate colors
+--     vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', {
+--       undercurl = false,
+--       underline = true,
+--       sp = colors.palette.autumnRed,  -- Kanagawa's error color
+--     })
+--
+--     vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', {
+--       undercurl = false,
+--       underline = true,
+--       sp = colors.palette.roninYellow,  -- Your preferred warning color
+--     })
+--
+--     vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', {
+--       undercurl = false,
+--       underline = true,
+--       sp = colors.palette.waveBlue2,  -- Kanagawa's info color
+--     })
+--
+--     vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', {
+--       undercurl = false,
+--       underline = true,
+--       sp = colors.palette.springViolet1,  -- Kanagawa's hint color
+--     })
+--   end
+-- })

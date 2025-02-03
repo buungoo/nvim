@@ -18,12 +18,7 @@ return {
 		},
 
 		completion = {
-			list = {
-				-- Do not auto-select in command mode
-				selection = function(ctx)
-					return ctx.mode == "cmdline" and "auto_insert" or "preselect"
-				end,
-			},
+			list = { selection = {preselect = function(ctx) return ctx.mode ~= 'cmdline' end, auto_insert = true} },
 
 			-- The preview text of how it will look if the suggestion is accepted
 			ghost_text = {
@@ -46,7 +41,7 @@ return {
 				auto_show_delay_ms = 50,
 				window = {
 					-- Remove the highlighting later to see if it has been improved
-					winhighlight = "FloatBorder:BlinkCmpSignatureHelpBorder",
+					-- winhighlight = "FloatBorder:BlinkCmpSignatureHelpBorder",
 					border = "rounded",
 				},
 				-- Enable if cpu usage is high
@@ -59,7 +54,7 @@ return {
 			enabled = true,
 			window = {
 				-- Remove the highlighting later to see if it has been improved
-				winhighlight = "FloatBorder:BlinkCmpSignatureHelpBorder",
+				-- winhighlight = "FloatBorder:BlinkCmpSignatureHelpBorder",
 				border = "rounded",
 			},
 		},

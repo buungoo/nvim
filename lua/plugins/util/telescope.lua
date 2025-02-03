@@ -32,6 +32,11 @@ return {
 					cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
 				}
 			end
+		},
+		{
+			"<leader>ld",
+			"<cmd>Telescope lsp_definitions<cr>",
+			desc = "Go to definition"
 		}
 	},
 	opts = {

@@ -2,28 +2,33 @@ return {
 	"shellRaining/hlchunk.nvim",
 	event = { "UIEnter" },
 	enabled = true,
-	opts = {
-		chunk = {
-			enable = true,
-			use_treesitter = true,
-			chars = {
-				right_arrow = "─",
+	config = function()
+		local kanagawa_colors = require('kanagawa.colors').setup({ theme = 'wave' })
+		if not kanagawa_colors then return end
+
+		require("hlchunk").setup({
+			chunk = {
+				enable = true,
+				use_treesitter = true,
+				chars = {
+					right_arrow = "─",
+				},
+				delay = 0,
+				duration = 100,
+				style = {
+					kanagawa_colors.palette.roninYellow,  -- Primary chunk color
+					kanagawa_colors.palette.autumnRed,    -- Error-containing chunks
+				},
 			},
-			delay = 0,
-			duration = 100,
-			style = {
-				"#ff9e3b", -- Same color as CursorLineNr in Kanagawa
-				"#f35336", -- Color for indentations that contain an error
+			indent = {
+				enable = true,
+				chars = {
+					"│",
+				},
+				style = {
+					kanagawa_colors.palette.sumiInk5,  -- Subtle indent guide color
+				},
 			},
-		},
-		indent = {
-			enable = true,
-			chars = {
-				"│",
-			},
-			style = {
-				vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui"),
-			},
-		},
-	},
+		})
+	end
 }
