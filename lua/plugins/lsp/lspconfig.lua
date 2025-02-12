@@ -67,8 +67,17 @@ return {
 		},
 		{
 			"<leader>lr",
-			function () vim.lsp.buf.rename() end,
-			desc = "LSP Smart rename"
+			function()
+				vim.lsp.buf.rename()
+			end,
+			desc = "LSP Smart rename",
+		},
+		{
+			"<leader>ls",
+			function()
+				vim.lsp.buf.code_action()
+			end,
+			desc = "Apply LSP Fix (Clangd Quick Fix)",
 		},
 	},
 	config = function(_, opts)

@@ -8,7 +8,7 @@ return {
 				none_ls.builtins.formatting.stylua, -- Lua formatter
 				none_ls.builtins.formatting.clang_format.with({
 					filetypes = { "c", "c++" },
-					extra_args = { "-style={IndentWidth: 4}" },
+					extra_args = { "-style={IndentWidth: 3}" },
 				}),
 			},
 		}

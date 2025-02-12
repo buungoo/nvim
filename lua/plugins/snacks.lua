@@ -11,26 +11,18 @@ return {
 		indent = { enabled = false },
 		input = { enabled = true },
 		lazygit = { enabled = true },
-		notifier = {
-			enabled = true,
-			border = "rounded",
-			zindex = 50,
-			ft = "markdown",
-			wo = {
-				winblend = 5,
-				wrap = false,
-				conceallevel = 2,
-				colorcolumn = "",
-			},
-			bo = { filetype = "snacks_notif" },
-		},
+		notifier = { enabled = true },
 		quickfile = { enabled = true },
 		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
 	},
+	-- stylua: ignore start
 	keys = {
-		{ "<leader>g",  function() Snacks.gitbrowse() end,      desc = "Gitbrowse" },
-		{ "<leader>gl", function() Snacks.lazygit() end,        desc = "Lazygit" },
-		{ "<leader>gh", function() Snacks.git.blame_line() end, desc = "Gitblame" },
+		-- { "<leader>g",       function() Snacks.gitbrowse() end,      desc = "Gitbrowse", },
+		{ "<leader>gl",      function() Snacks.lazygit() end,        desc = "Lazygit", },
+		{ "<leader>gh",      function() Snacks.git.blame_line() end, desc = "Gitblame", },
+		{ "<leader><space>", function() Snacks.picker.smart() end,   desc = "Smart Find Files", },
+		{ "<leader>z", function() Snacks.zen() end, desc = "Toggle zen"},
 	},
+	-- stylua: ignore end
 }
