@@ -42,6 +42,7 @@ return {
 			docker_compose_language_service = {},
 			dockerls = {},
 			pyright = {},
+			rnix = {},
 			dartls = {
 				settings = {
 					dart = {

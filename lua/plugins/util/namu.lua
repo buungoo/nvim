@@ -1,5 +1,6 @@
 return {
 	"bassamsdata/namu.nvim",
+	enabled = false,
 	keys = {
 		{ "<leader><space>", "<cmd>Namu symbols<cr>", desc = "Smart Find Files" },
 	},

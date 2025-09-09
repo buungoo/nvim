@@ -14,14 +14,14 @@ return {
 		notifier = { enabled = true },
 		quickfile = { enabled = true },
 		scroll = { enabled = false },
-		statuscolumn = { enabled = true },
+		statuscolumn = { enabled = false },
 	},
 	-- stylua: ignore start
 	keys = {
 		-- { "<leader>g",       function() Snacks.gitbrowse() end,      desc = "Gitbrowse", },
 		{ "<leader>gl",      function() Snacks.lazygit() end,        desc = "Lazygit", },
 		{ "<leader>gh",      function() Snacks.git.blame_line() end, desc = "Gitblame", },
-		-- { "<leader><space>", function() Snacks.picker.smart() end,   desc = "Smart Find Files", },
+		{ "<leader><space>", function() Snacks.picker.smart() end,   desc = "Smart Find Files", },
 		{ "<leader>z", function() Snacks.zen() end, desc = "Toggle zen"},
 	},
 	-- stylua: ignore end

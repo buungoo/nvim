@@ -10,6 +10,7 @@ return {
 					filetypes = { "c", "c++" },
 					extra_args = { "-style={IndentWidth: 3}" },
 				}),
+				-- none_ls.builtins.formatting.latexindent,
 			},
 		}
 	end,

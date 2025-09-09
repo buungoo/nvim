@@ -39,16 +39,17 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- If set to "yes" adds a signcolumn to the left of the line numbers when there are warning etc.
-vim.opt.signcolumn = "number"
+-- vim.opt.signcolumn = "number"
+vim.opt.signcolumn = "yes:1"  -- Reserve space for signs at all times
 
 -- Do not wrap to newline by default
 vim.opt.wrap = false
 
 -- Centralized float configuration for LSP-related popups
 local float_config = {
-    border = "rounded",  -- Use rounded borders
-    -- max_width = 80,      -- Optional: Limit width of floats
-    focusable = false,   -- Optional: Prevent focus stealing
+	border = "rounded", -- Use rounded borders
+	-- max_width = 80,      -- Optional: Limit width of floats
+	focusable = false, -- Optional: Prevent focus stealing
 }
 
 -- Set default configuration for diagnostics
@@ -117,12 +118,13 @@ vim.diagnostic.config({
 -- })
 
 vim.o.clipboard = "unnamedplus"
+-- vim.g.clipboard = "osc52"
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    local copy_to_unnamedplus = require("vim.ui.clipboard.osc52").copy("+")
-    copy_to_unnamedplus(vim.v.event.regcontents)
-    local copy_to_unnamed = require("vim.ui.clipboard.osc52").copy("*")
-    copy_to_unnamed(vim.v.event.regcontents)
-  end,
+	callback = function()
+		local copy_to_unnamedplus = require("vim.ui.clipboard.osc52").copy("+")
+		copy_to_unnamedplus(vim.v.event.regcontents)
+		local copy_to_unnamed = require("vim.ui.clipboard.osc52").copy("*")
+		copy_to_unnamed(vim.v.event.regcontents)
+	end,
 })
